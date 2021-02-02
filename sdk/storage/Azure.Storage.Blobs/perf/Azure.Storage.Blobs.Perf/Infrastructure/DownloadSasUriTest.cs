@@ -21,14 +21,14 @@ namespace Azure.Storage.Blobs.Perf.Infrastructure
 
             var sharedKeyBlobClient = new BlobClient(_blobClient.Uri, StorageSharedKeyCredential);
 
-            if (sharedKeyBlobClient.CanGenerateSasUri)
-            {
-                SasUri = sharedKeyBlobClient.GenerateSasUri(BlobSasPermissions.Read, DateTimeOffset.UtcNow.AddDays(1));
-            }
-            else
-            {
+            //if (sharedKeyBlobClient.CanGenerateSasUri)
+            //{
+            //    SasUri = sharedKeyBlobClient.GenerateSasUri(BlobSasPermissions.Read, DateTimeOffset.UtcNow.AddDays(1));
+            //}
+            //else
+            //{
                 throw new InvalidOperationException();
-            }
+            //}
         }
 
         public override async Task GlobalSetupAsync()
