@@ -1,21 +1,14 @@
 [CmdletBinding()]
 param(
   [Parameter(Mandatory=$true)]
-  [String] $FromDate # In the format "yyyy-MM-dd"
+  [DateTime] $FromDate
 )
 
 . (Join-Path $PSScriptRoot common.ps1)
 
 $releaseHighlights = @{}
 
-if ($FromDate -as [DateTime])
-{
-    $date = ([DateTime]$FromDate).ToString($CHANGELOG_DATE_FORMAT)
-}
-else {
-    LogWarning "Invalid date passed. Switch to using the current date"
-    $date = Get-Date -Format $CHANGELOG_DATE_FORMAT
-}
+$date = $FromDate.ToString($CHANGELOG_DATE_FORMAT)
 
 $allPackageProps = Get-AllPkgProperties
 
